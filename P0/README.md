@@ -8,3 +8,5 @@
  **************************
 
  Me aburro :)
+
+ ![](Ejercicio2-img1.gif)
