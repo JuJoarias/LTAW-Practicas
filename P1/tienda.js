@@ -40,6 +40,7 @@ const server = http.createServer((req, res) => {
         }
     } else {
         res.writeHead(200, { 'Content-Type': contentType });
+        console.log('Peticion enviada');
         res.end(Content, 'utf-8');
     }
     });
