@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
     const filePath = path.join("/workspaces/LTAW-Practicas/P1/", 'index.html');
     //-- /workspaces/LTAW-Practicas/P1/ -- Si trabajo desde casa este es el path si tengo nodejs en este portatil
     //-- /home/alumnos/juanjose/LTAW/LTAW-Practicas/P1/ -- si trabajo desde la uni este es el path
-  //-- Indicamos que se ha recibido una petición probando2
+  //-- Indicamos que se ha recibido una petición probando
   console.log("Petición recibida!");
 
   fs.readFile(filePath, (err, data) => {
