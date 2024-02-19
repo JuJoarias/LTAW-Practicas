@@ -22,12 +22,14 @@ const server = http.createServer((req, res) => {
         });
     } else if (req.url === '/home/alumnos/juanjose/LTAW/LTAW-Practicas/P1/halcon_milenario.jpg') {
         // Si la URL solicitada es la imagen, sirve la imagen
-        const imagePath = path.join(__dirname, 'imagen.jpg'); // Ruta a tu imagen
+        const imagePath = path.join(__dirname, 'halcon_milenario.jpg'); // Ruta a tu imagen
         fs.readFile(imagePath, (err, data) => {
             if (err) {
+                console.log("Fallo al cargar la imagen")
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.end('Error interno del servidor');
             } else {
+                console.log("Cargo imagen")
                 res.writeHead(200, { 'Content-Type': 'image/jpeg' }); // Cambia el tipo de contenido según el formato de tu imagen
                 res.end(data);
             }
