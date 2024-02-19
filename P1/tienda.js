@@ -7,8 +7,9 @@ const PUERTO = 9090;
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
-    const filePath = path.join("/home/alumnos/juanjose/LTAW/LTAW-Practicas/P1/", 'index.html');
-    
+    const filePath = path.join("/workspaces/LTAW-Practicas/P1/", 'index.html');
+    //-- /workspaces/LTAW-Practicas/P1/ -- Si trabajo desde casa este es el path si tengo nodejs en este portatil
+    //-- /home/alumnos/juanjose/LTAW/LTAW-Practicas/P1/ -- si trabajo desde la uni este es el path
   //-- Indicamos que se ha recibido una petición
   console.log("Petición recibida!");
 
