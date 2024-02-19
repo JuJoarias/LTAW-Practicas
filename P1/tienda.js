@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
         res.end(data);
     }
     });
-});
+}); 
 
 //-- Activar el servidor: ¡Que empiece la fiesta!
 server.listen(PUERTO);
