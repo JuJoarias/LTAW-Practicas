@@ -1,0 +1,15 @@
+.titulos{
+    text-align: center;
+}
+
+.carta{
+    border-color: black;
+    border-style: solid;
+    border-radius: 25px;
+    max-width: 1080px;
+    margin: auto;
+}
+
+.halcon{
+    max-width: 180px;
+}

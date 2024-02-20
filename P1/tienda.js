@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
         console.log('cambio a imagen');
         contentType = 'image/jpg';
         break;
+    case '.css':
+        console.log('cambio a css');
+        contentType = 'text/css';
+        break;
   }
 
   fs.readFile(filePath, (err, Content) => {
