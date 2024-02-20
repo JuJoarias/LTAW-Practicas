@@ -8,8 +8,10 @@
     border-radius: 25px;
     max-width: 1080px;
     margin: auto;
+    background-color: rgb(153, 117, 17);
+    
 }
 
 .halcon{
-    max-width: 180px;
+    
 }
