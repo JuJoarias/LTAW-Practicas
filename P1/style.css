@@ -2,6 +2,11 @@
     text-align: center;
 }
 
+.contenedor{
+    display: flex;
+    
+}
+
 .carta{
     margin: 10px;
     border: 5px solid #000000;
