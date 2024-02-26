@@ -1,4 +1,19 @@
+html{
+    width: 100%;
+    height: 100%;
+    background-image: url(imagenes/jawa.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@font-face{
+    font-family: "jabba";
+    src: url("jabba.ttf");
+}
+
 .titulos{
+    font-family: "jabba";
     text-align: center;
 }
 
@@ -7,11 +22,10 @@
 }
 
 .carta{
-    margin: 10px;
+    margin: 13px;
     border: 5px solid #000000;
-    float: left;
-    max-width: 540px;
-    background-color: rgb(153, 117, 17);
+    max-width: 580px;
+    background-image: url(imagenes/chapa1.jpg);
     max-height: 350px;
 }
 
@@ -29,6 +43,7 @@ img:hover {
 }
 
 .nombre {
+    font-family: "jabba";
     padding: 15px;
     text-align: center;
 }
