@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="titulos">
-            <h1>Razor 1</h1>
+            <h1>Razor Crest</h1>
         </div>
         <div class="contenedor">
             <div class="carta">
@@ -21,20 +21,31 @@
                     
                 </figure>
                 <div class="descripcion">
-                    Nave de carga...aaaaaaaaaaaaaaaaaaaaaaaa 
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    Nave clase Firespray-31 resistente y versátil. 
+                    Equipada con armamento defensivo y espacio de carga suficiente
+                    para misiones de cazarrecompensas y transporte de mercancías
                     <div class="botones">
                         <a href="index.html"  class="btn">volver</a>
                         
-                        <button class="btn">Comprar</button>
+                        <button class="btn" id="miBoton">Comprar</button>
                     </div>
                 </div>
 
             </div>
         </div>
+        <audio id="miSonido">
+            <source src="utini.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            // Obtener el elemento del botón y el audio
+            var boton = document.getElementById("miBoton");
+            var sonido = document.getElementById("miSonido");
+        
+            // Agregar un evento de clic al botón
+            boton.addEventListener("click", function() {
+                // Reproducir el sonido
+                sonido.play();
+            });
+        </script>
     </body>
 </html>

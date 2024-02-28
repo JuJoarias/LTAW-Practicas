@@ -21,20 +21,32 @@
                     
                 </figure>
                 <div class="descripcion">
-                    Nave de carga...aaaaaaaaaaaaaaaaaaaaaaaa 
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    Nave de carga liguera modelo YT-1300 Corellian Freighter
+                     altamente modificada y versátil, capaz de realizar viajes rápidos
+                     en el espacio. Es reconocible por su diseño distintivo y 
+                     sus numerosas mejoras, haciéndola ideal para contrabandistas y aventureros.
                     <div class="botones">
                         <a href="index.html"  class="btn">volver</a>
                         
-                        <button class="btn">Comprar</button>
+                        <button class="btn" id="miBoton">Comprar</button>
                     </div>
                 </div>
 
             </div>
         </div>
+        <audio id="miSonido">
+            <source src="utini.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            // Obtener el elemento del botón y el audio
+            var boton = document.getElementById("miBoton");
+            var sonido = document.getElementById("miSonido");
+        
+            // Agregar un evento de clic al botón
+            boton.addEventListener("click", function() {
+                // Reproducir el sonido
+                sonido.play();
+            });
+        </script>
     </body>
 </html>

@@ -11,9 +11,6 @@ const server = http.createServer((req, res) => {
     const filePath = path.join(__dirname, url);
     const extension = path.extname(filePath);
     let contentType = 'text/html';
-    //-- /workspaces/LTAW-Practicas/P1/ -- Si trabajo desde casa este es el path si tengo nodejs en este portatil
-    //-- /home/alumnos/juanjose/LTAW/LTAW-Practicas/P1/ -- si trabajo desde la uni este es el path
-  //-- Indicamos que se ha recibido una petición probando
   console.log("Petición recibida!");
 
   switch (extension) {
@@ -31,6 +28,10 @@ const server = http.createServer((req, res) => {
     case '.css':
         console.log('cambio a css');
         contentType = 'text/css';
+        break;
+    case '.mp3':
+        console.log('audio')
+        contentType = 'audio/mpeg';
         break;
   }
 
