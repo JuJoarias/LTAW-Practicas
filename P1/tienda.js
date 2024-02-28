@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
         console.log('cambio a imagen');
         contentType = 'image/jpg';
         break;
+    case '.webp':
+        console.log('cambio a imagen');
+        contentType = 'image/webp';
+        break;
     case '.css':
         console.log('cambio a css');
         contentType = 'text/css';

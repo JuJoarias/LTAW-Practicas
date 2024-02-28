@@ -1,16 +1,10 @@
 html{
     width: 100%;
     height: 100%;
-    background-image: url(imagenes/jawa.jpg);
+    background-image: url(imagenes/Jaawa.webp);
     background-size:cover;
     background-repeat: no-repeat;
-    background-position: center;
-    
-}
-
-body{
-    width: 100%;
-    height: 100%;
+    background-position: center;  
 }
 
 @font-face{
@@ -19,7 +13,7 @@ body{
 }
 
 .titulos{
-    margin-top: 5%;
+    margin-top: 3%;
     font-family: "jabba";
     text-align: center;
 }
