@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>El rincon del JAWA</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="imagenes/jawa_icon-icons.com_76960.png">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+    </head>
+    <body>
+        <div class="titulos">
+            <h1>Slave 1</h1>
+        </div>
+        <div class="contenedor">
+            <div class="carta">
+                    
+                <figure>
+                    
+                    <img id="imagen2" src="imagenes/slave1.jpeg" alt="Mi imagen" >
+                    
+                </figure>
+                <div class="descripcion">
+                    Nave clase Firespray-31, altamente modificada y equipada 
+                    para la caza de objetivos y el transporte de prisioneros. 
+                    Reconocible por su forma distintiva y su avanzada tecnología de sigilo, 
+                    la Slave I es una herramienta letal en manos de su piloto.
+                    <div class="botones">
+                        <a href="index.html"  class="btn">volver</a>
+                        
+                        <button class="btn" id="miBoton">Comprar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <audio id="miSonido">
+            <source src="utini.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            // Obtener el elemento del botón y el audio
+            var boton = document.getElementById("miBoton");
+            var sonido = document.getElementById("miSonido");
+        
+            // Agregar un evento de clic al botón
+            boton.addEventListener("click", function() {
+                // Reproducir el sonido
+                sonido.play();
+            });
+        </script>
+    </body>
+</html>

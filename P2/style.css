@@ -1,0 +1,106 @@
+html{
+    width: 100%;
+    height: 100%;
+    background-image: url(imagenes/Jaawa.webp);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;  
+}
+
+@font-face{
+    font-family: "jabba";
+    src: url("jabba.ttf");
+}
+
+.titulos{
+    margin-top: 3%;
+    font-family: "jabba";
+    text-align: center;
+}
+
+.contenedor{
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+}
+
+.carta{
+    margin: 13px;
+    border: 5px solid #000000;
+    max-width: 580px;
+    background-image: url(imagenes/chapa1.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-height: auto;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+}
+
+figure{
+    max-height: 260px;
+}
+
+#imagen:hover {
+    border: 5px solid #777;
+}
+
+.nombre {
+    font-family: "jabba";
+    padding: 15px;
+    text-align: center;
+}
+
+.descripcion {
+    padding: 15px;
+    text-align: center;
+    float: center;
+}
+
+.botones{
+    display: flex;
+    margin: 13px;
+}
+
+.btn {
+    margin: 5px;
+    text-decoration: none;
+    background-color: black; /* Fondo negro */
+    border: 2px solid #333;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: white; /* Color de texto por defecto */
+}
+
+.btn::before, .btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #007bff;
+    transition: width 0.3s ease-in-out; /* Hacer la transición más lenta */
+}
+
+.btn::before {
+    top: 0;
+    left: 0;
+}
+
+.btn::after {
+    bottom: 0;
+    right: 0;
+}
+
+.btn:hover::before {
+    width: 100%; /* Aparecer desde la izquierda */
+}
+
+.btn:hover::after {
+    width: 100%; /* Aparecer desde la derecha */
+}
