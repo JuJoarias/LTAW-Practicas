@@ -36,10 +36,6 @@ const server = http.createServer((req, res) => {
         console.log('audio')
         contentType = 'audio/mpeg';
         break;
-    case '.json':
-        console.log('json')
-        contentType = 'text/json';
-        break;
   }
 
   fs.readFile(filePath, (err, Content) => {
