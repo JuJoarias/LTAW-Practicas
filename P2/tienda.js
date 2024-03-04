@@ -1,6 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
+tienda = JSON.parse(tienda_json)
+//console.log("Productos en la tienda: " + tienda.productos[1].nombre);
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9090;
@@ -32,6 +35,10 @@ const server = http.createServer((req, res) => {
     case '.mp3':
         console.log('audio')
         contentType = 'audio/mpeg';
+        break;
+    case '.json':
+        console.log('json')
+        contentType = 'text/json';
         break;
   }
 

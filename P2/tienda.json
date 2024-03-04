@@ -1,0 +1,36 @@
+{
+    "productos":[
+        {
+            "nombre": "Halcon Milenario", 
+            "descripcion": " Nave de carga liguera modelo YT-1300 Corellian Freighter altamente modificada y versátil, capaz de realizar viajes rápidos en el espacio. Es reconocible por su diseño distintivo y sus numerosas mejoras, haciéndola ideal para contrabandistas y aventureros.",
+            "precio": 20.000,
+            "stock": 15
+        },
+        {
+            "nombre": "Razor Crest", 
+            "descripcion": " Nave clase Firespray-31 resistente y versátil. Equipada con armamento defensivo y espacio de carga suficiente para misiones de cazarrecompensas y transporte de mercancías",
+            "precio": 40.000,
+            "stock": 7
+        },
+        {
+            "nombre": "Slave 1", 
+            "descripcion": " Nave clase Firespray-31, altamente modificada y equipada para la caza de objetivos y el transporte de prisioneros. Reconocible por su forma distintiva y su avanzada tecnología de sigilo, la Slave I es una herramienta letal en manos de su piloto.",
+            "precio": 90.000,
+            "stock": 3
+        }
+    ],
+
+    "usuarios":[
+        {
+            "usuario": "areix",
+            "nreal": "Juanjo",
+            "password": "12345"
+        },
+
+        {
+            "usuario": "root",
+            "nreal": "obijuan",
+            "password": "54321"
+        }
+    ]
+}
