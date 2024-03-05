@@ -1,5 +1,16 @@
+@font-face{
+        font-family: "jabba";
+        src: url("jabba.ttf");
+}
+  
   .btn {
     padding: 10px;
+    font-family: "jabba";
+  }
+
+  .btn2 {
+    margin-top: 5px;
+    font-family: "jabba";
   }
   
   .overlay {
@@ -29,7 +40,7 @@
   }
   
   .login {
-    padding: 50px 25px;
+    padding: 30px 25px;
     background: white;
     border-radius: 10px;
   }
