@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
         req.on('end', ()=> {
             //-- Generar respuesta
             res.setHeader('Content-Type', "text/html");
-            res.write(RESPUESTA);
+            res.write(index);
             res.end()
         });
     } else {
