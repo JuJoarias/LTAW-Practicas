@@ -2,13 +2,47 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
-index = fs.readFileSync("P2/index.html", "utf-8")
+LOGIN = fs.readFileSync("P2/log_in.html", "utf-8")
+indice = fs.readFileSync("P2/index.html", "utf-8")
+//const username = indice.getElementById("username").value;
 tienda = JSON.parse(tienda_json)
 //console.log("Productos en la tienda: " + tienda.productos[1].nombre);
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9090;
-const RESPUESTA = fs.readFileSync('P2/halcon.html','utf-8');
+//const RESPUESTA = fs.readFileSync('P2/halcon.html','utf-8');
+
+function get_user(req){
+    //-- Leer la Cookie recibida
+  const cookie = req.headers.cookie;
+
+  //-- Hay cookie
+  if (cookie) {
+    
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split("&");
+    
+    //-- Variable para guardar el usuario
+    let user;
+
+    //-- Recorrer todos los pares nombre-valor
+    pares.forEach((element, index) => {
+
+      //-- Obtener los nombres y valores por separado
+      let [nombre, valor] = element.split('=');
+
+      //-- Leer el usuario
+      //-- Solo si el nombre es 'user'
+      if (nombre.trim() === 'username') {
+        user = valor;
+      }
+    });
+
+    //-- Si la variable user no está asignada
+    //-- se devuelve null
+    return user || null;
+  }
+}
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
@@ -34,23 +68,30 @@ const server = http.createServer((req, res) => {
         contentType = 'audio/mpeg';
         break;
   }
-    if (req.url === '/log_in' ) {
-        
+    if (req.url == '/log_in' ) {
+        let user = get_user(req);
+        console.log("user: " + user);
         //-- Si hay datos en el cuerpo, se imprimen
-        req.on("data", (cuerpo) => {
-            console.log('entro')
-            //-- Los datos del cuerpo son caracteres
-            req.setEncoding('utf8');
-            console.log(`Cuerpo (${cuerpo.length} bytes)`)
-            console.log(` ${cuerpo}`);
-        });
+        req.on('data', (cuerpo) => {       
+          //-- Los datos del cuerpo son caracteres
+          //TODO: Ahora que me lee usuario y contraseña, ¿que hago?
+          //TODO: veo si es igual al JSON??
+          req.setEncoding('utf8');
+          console.log(`Cuerpo (${cuerpo.length} bytes)`)
+          console.log(` ${cuerpo}`);
+          res.setHeader('Set-Cookie', {cuerpo}) ;
+          
+          if (user) {
 
-        req.on('end', ()=> {
-            //-- Generar respuesta
-            res.setHeader('Content-Type', "text/html");
-            res.write(index);
-            res.end()
-        });
+            //-- Añadir a la página el nombre del usuario
+            
+            Content = LOGIN.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>");
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.write(Content);
+            res.end();
+            }
+        });       
+
     } else {
         fs.readFile(filePath, (err, Content) => {
             if (err) {
