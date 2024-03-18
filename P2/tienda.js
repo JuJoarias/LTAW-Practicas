@@ -3,8 +3,7 @@ const fs = require('fs');
 const path = require('path');
 tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
 LOGIN = fs.readFileSync("P2/log_in.html", "utf-8")
-indice = fs.readFileSync("P2/index.html", "utf-8")
-//const username = indice.getElementById("username").value;
+
 tienda = JSON.parse(tienda_json)
 //console.log("Productos en la tienda: " + tienda.productos[1].nombre);
 
@@ -67,7 +66,7 @@ const server = http.createServer((req, res) => {
     case '.mp3':
         contentType = 'audio/mpeg';
         break;
-  }
+    };
     if (req.url == '/log_in' ) {
         let user = get_user(req);
         console.log("user: " + user);
@@ -78,8 +77,9 @@ const server = http.createServer((req, res) => {
           //TODO: veo si es igual al JSON??
           req.setEncoding('utf8');
           console.log(`Cuerpo (${cuerpo.length} bytes)`)
-          console.log(` ${cuerpo}`);
-          res.setHeader('Set-Cookie', {cuerpo}) ;
+          console.log(`${cuerpo}`);
+          res.setHeader('Set-Cookie', ` ${cuerpo}`);
+          
           
           if (user) {
 
@@ -89,6 +89,11 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': contentType });
             res.write(Content);
             res.end();
+            } else {
+                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>");
+                res.writeHead(200, { 'Content-Type': contentType });
+                res.write(Content);
+                res.end();
             }
         });       
 
