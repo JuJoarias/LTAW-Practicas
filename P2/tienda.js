@@ -49,6 +49,7 @@ const server = http.createServer((req, res) => {
     const filePath = path.join(__dirname, url);
     const extension = path.extname(filePath);
     let contentType = 'text/html';
+    
 
   switch (extension) {
     case '.html':
@@ -68,8 +69,7 @@ const server = http.createServer((req, res) => {
         break;
     };
     if (req.url == '/log_in' ) {
-        let user = get_user(req);
-        console.log("user: " + user);
+        
         //-- Si hay datos en el cuerpo, se imprimen
         req.on('data', (cuerpo) => {       
           //-- Los datos del cuerpo son caracteres
@@ -78,8 +78,9 @@ const server = http.createServer((req, res) => {
           req.setEncoding('utf8');
           console.log(`Cuerpo (${cuerpo.length} bytes)`)
           console.log(`${cuerpo}`);
-          res.setHeader('Set-Cookie', ` ${cuerpo}`);
-          
+          res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, de primeras da undefined
+          let user = get_user(req);
+          console.log("user: " + user);
           
           if (user) {
 
@@ -90,12 +91,13 @@ const server = http.createServer((req, res) => {
             res.write(Content);
             res.end();
             } else {
-                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>");
+                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario: " + user + "</h2>");
                 res.writeHead(200, { 'Content-Type': contentType });
                 res.write(Content);
                 res.end();
             }
-        });       
+        }); 
+              
 
     } else {
         fs.readFile(filePath, (err, Content) => {
