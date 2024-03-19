@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
 LOGIN = fs.readFileSync("P2/log_in.html", "utf-8")
+indice = fs.readFileSync("P2/index.html", "utf-8")
 
 tienda = JSON.parse(tienda_json)
 //console.log("Usuario en la tienda: " + tienda.usuarios[0].usuario);
@@ -79,7 +80,6 @@ const server = http.createServer((req, res) => {
           console.log(`${cuerpo}`);
           res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, de primeras da undefined asi que toca volver atras y darle submit de nuevo para que funcione
           let user = get_user(req);
-          console.log("user: " + user);
           
           if (user === tienda.usuarios[0].usuario || user === tienda.usuarios[1].usuario) {
 
@@ -112,6 +112,10 @@ const server = http.createServer((req, res) => {
                     res.end('Error interno del servidor');  
                 }
             } else {
+                //console.log(user)
+                //if (user){
+                 //   Content = indice.replace('<button class="btn" onclick="toggleLogin()">Login</button>', 'Bienvenido '+ user)
+                //}
                 res.writeHead(200, { 'Content-Type': contentType });
                 res.end(Content, 'utf-8');
             } 
