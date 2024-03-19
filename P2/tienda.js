@@ -5,7 +5,7 @@ tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
 LOGIN = fs.readFileSync("P2/log_in.html", "utf-8")
 
 tienda = JSON.parse(tienda_json)
-//console.log("Productos en la tienda: " + tienda.productos[1].nombre);
+//console.log("Usuario en la tienda: " + tienda.usuarios[0].usuario);
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9090;
@@ -73,16 +73,15 @@ const server = http.createServer((req, res) => {
         //-- Si hay datos en el cuerpo, se imprimen
         req.on('data', (cuerpo) => {       
           //-- Los datos del cuerpo son caracteres
-          //TODO: Ahora que me lee usuario y contraseña, ¿que hago?
-          //TODO: veo si es igual al JSON??
+          
           req.setEncoding('utf8');
           console.log(`Cuerpo (${cuerpo.length} bytes)`)
           console.log(`${cuerpo}`);
-          res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, de primeras da undefined
+          res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, de primeras da undefined asi que toca volver atras y darle submit de nuevo para que funcione
           let user = get_user(req);
           console.log("user: " + user);
           
-          if (user) {
+          if (user === tienda.usuarios[0].usuario || user === tienda.usuarios[1].usuario) {
 
             //-- Añadir a la página el nombre del usuario
             
@@ -91,11 +90,11 @@ const server = http.createServer((req, res) => {
             res.write(Content);
             res.end();
             } else {
-                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario: " + user + "</h2>");
+                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario: " + user + " No valido</h2>");
                 res.writeHead(200, { 'Content-Type': contentType });
                 res.write(Content);
                 res.end();
-            }
+              }
         }); 
               
 
