@@ -24,6 +24,7 @@ function get_user(req){
     
     //-- Variable para guardar el usuario
     let user;
+    let password;
 
     //-- Recorrer todos los pares nombre-valor
     pares.forEach((element, index) => {
@@ -35,12 +36,13 @@ function get_user(req){
       //-- Solo si el nombre es 'user'
       if (nombre.trim() === 'username') {
         user = valor;
+      } else if (nombre.trim() === 'password'){
+        password = valor;
       }
     });
-
     //-- Si la variable user no está asignada
     //-- se devuelve null
-    return user || null;
+    return [user, password] || null;
   }
 }
 
@@ -50,8 +52,8 @@ const server = http.createServer((req, res) => {
     const filePath = path.join(__dirname, url);
     const extension = path.extname(filePath);
     let contentType = 'text/html';
+    let user = get_user(req);
     
-
   switch (extension) {
     case '.html':
         contentType = 'text/html';
@@ -75,26 +77,37 @@ const server = http.createServer((req, res) => {
         req.on('data', (cuerpo) => {       
           //-- Los datos del cuerpo son caracteres
           
-          req.setEncoding('utf8');
-          console.log(`Cuerpo (${cuerpo.length} bytes)`)
-          console.log(`${cuerpo}`);
-          res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, de primeras da undefined asi que toca volver atras y darle submit de nuevo para que funcione
-          let user = get_user(req);
+          //req.setEncoding('utf8');
+          //console.log(`Cuerpo (${cuerpo.length} bytes)`)
+          //console.log(`${cuerpo}`);
+          res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, toca recargar la pagina para que se guarde la cookie
+          res.writeHead(200, { 'Content-Type': contentType });
+          res.end(indice, 'utf-8');
           
-          if (user === tienda.usuarios[0].usuario || user === tienda.usuarios[1].usuario) {
+        //   if (user){
+        //     if (user[0] === tienda.usuarios[0].usuario || user[0] === tienda.usuarios[1].usuario) {
 
-            //-- Añadir a la página el nombre del usuario
-            
-            Content = LOGIN.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>");
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.write(Content);
-            res.end();
-            } else {
-                Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario: " + user + " No valido</h2>");
-                res.writeHead(200, { 'Content-Type': contentType });
-                res.write(Content);
-                res.end();
-              }
+        //         //-- Añadir a la página el nombre del usuario
+                
+        //         Content = LOGIN.replace("HTML_EXTRA", "<h2>Usuario: " + user[0] + "</h2>");
+        //         res.writeHead(200, { 'Content-Type': contentType });
+        //         res.write(Content);
+        //         res.end();
+        //     } else {
+        //             Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario o contraseña no valido</h2>");
+        //             Content = Content.replace("HTML_EXTRA","");
+        //             res.writeHead(200, { 'Content-Type': contentType });
+        //             res.write(Content);
+        //             res.end();
+        //         }
+        //   }else {
+        //     Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario o contraseña no valido</h2>");
+        //     Content = Content.replace("HTML_EXTRA","");
+        //     res.writeHead(200, { 'Content-Type': contentType });
+        //     res.write(Content);
+        //     res.end();
+        // }
+          
         }); 
               
 
@@ -112,10 +125,12 @@ const server = http.createServer((req, res) => {
                     res.end('Error interno del servidor');  
                 }
             } else {
-                //console.log(user)
-                //if (user){
-                 //   Content = indice.replace('<button class="btn" onclick="toggleLogin()">Login</button>', 'Bienvenido '+ user)
-                //}
+                console.log(user)
+                if (user){
+                    Content = indice.replace('HTML_EXTRA', '<h2>Bienvenido '+user[0]+'</h2>');
+                }else{
+                    Content = indice.replace('HTML_EXTRA', '');
+                }
                 res.writeHead(200, { 'Content-Type': contentType });
                 res.end(Content, 'utf-8');
             } 
