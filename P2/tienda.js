@@ -173,7 +173,7 @@ const server = http.createServer((req, res) => {
             const userExists = usuarios.find(user => user.usuario === username && user.password === password);
             
             if (userExists) {
-              res.setHeader('Set-Cookie', `user=${username}`);
+              res.setHeader('Set-Cookie', `username=${username}&password=${password}`);
               res.writeHead(200, { 'Content-Type': 'text/html' });
               // PODEMOS CAMBIARLO POR UN HTML CREADO 
     
