@@ -11,7 +11,6 @@ tienda = JSON.parse(tienda_json)
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9090;
-//const RESPUESTA = fs.readFileSync('P2/halcon.html','utf-8');
 
 function ShowDescription(){
     let htmlProductos = '';
@@ -61,8 +60,6 @@ function ok200description(res,tipo,user){
     const producto2=producto1.replace('<!-- PRODUCT2_PLACEHOLDER -->', ShowDescription().split(",")[1]);
     const producto3=producto2.replace('<!-- PRODUCT3_PLACEHOLDER -->', ShowDescription().split(",")[2]);
     
-      // cookie vacia
-     //res.setHeader('Set-Cookie', 'user=');
     
      if (user) {
        
@@ -122,44 +119,8 @@ const server = http.createServer((req, res) => {
         req.on('data', (cuerpo) => {       
           //-- Los datos del cuerpo son caracteres
           body += cuerpo.toString();
-          //req.setEncoding('utf8');
-          //console.log(`Cuerpo (${cuerpo.length} bytes)`)
-          console.log(`${cuerpo}`);
-        //   res.setHeader('Set-Cookie',`${cuerpo}`);// funciona a la segunda, toca recargar la pagina para que se guarde la cookie
           
-        //   if (user){
-        //     //Content = indice.replace('<!-- HTML_EXTRA -->', `<h2>Bienvenido:  ${user[0]} </h2>`);
-        //     res.write('<h1>Bienvenido ' + user[0] + '</h1>');
-        //     res.write('<a href="/">Pagina Principal</a>'); 
-        //     res.end();
-        //     }
-        //   res.writeHead(200, { 'Content-Type': contentType });
-        //   res.end(indice, 'utf-8');
-          
-        //   if (user){
-        //     if (user[0] === tienda.usuarios[0].usuario || user[0] === tienda.usuarios[1].usuario) {
-
-        //         //-- Añadir a la página el nombre del usuario
-                
-        //         Content = LOGIN.replace("HTML_EXTRA", "<h2>Usuario: " + user[0] + "</h2>");
-        //         res.writeHead(200, { 'Content-Type': contentType });
-        //         res.write(Content);
-        //         res.end();
-        //     } else {
-        //             Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario o contraseña no valido</h2>");
-        //             Content = Content.replace("HTML_EXTRA","");
-        //             res.writeHead(200, { 'Content-Type': contentType });
-        //             res.write(Content);
-        //             res.end();
-        //         }
-        //   }else {
-        //     Content = LOGIN.replace("<h1>LOG IN CORRECTO</h1>", "<h1>LOG IN INCORRECTO</h1>\n <h2>Usuario o contraseña no valido</h2>");
-        //     Content = Content.replace("HTML_EXTRA","");
-        //     res.writeHead(200, { 'Content-Type': contentType });
-        //     res.write(Content);
-        //     res.end();
-        // }
-          
+          console.log(`${cuerpo}`);          
         }); 
         
         req.on('end', () => {
