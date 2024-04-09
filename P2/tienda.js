@@ -5,6 +5,10 @@ tienda_json = fs.readFileSync('P2/tienda.json','utf-8')
 const usuarios = JSON.parse(tienda_json).usuarios;
 const productos = JSON.parse(tienda_json).productos;
 indice = fs.readFileSync("P2/index.html", "utf-8")
+halcon = fs.readFileSync("P2/halcon.html", "utf-8")
+razor = fs.readFileSync("P2/razor.html", "utf-8")
+slave = fs.readFileSync("P2/slave.html", "utf-8")
+
 //console.log(usuarios[0].usuario)
 tienda = JSON.parse(tienda_json)
 //console.log("Usuario en la tienda: " + tienda.usuarios[0].usuario);
@@ -76,13 +80,20 @@ function ok200description(res,tipo,user){
     
 };
 
-function ok200(res,data,tipo){
-
+function ok200(res,tipo,req){
+  if(req.url == '/halcon.html'){
+    const descripcion=halcon.replace('<!-- descripcion -->', productos[0].descripcion);
+    content = descripcion.replace('<!-- precio -->', productos[0].precio + "$");
+  } else if(req.url == '/razor.html'){
+    const descripcion=razor.replace('<!-- descripcion -->', productos[1].descripcion);
+    content = descripcion.replace('<!-- precio -->', productos[1].precio+ "$");
+  } else if(req.url == '/slave.html'){
+    const descripcion=slave.replace('<!-- descripcion -->', productos[2].descripcion);
+    content = descripcion.replace('<!-- precio -->', productos[2].precio+ "$");
+  }
     res.writeHead(200, {'Content-Type': tipo});
-    res.write(data);
+    res.write(content);
     res.end();
-  
-  
 };
 
 //-- Crear el servidor
@@ -233,7 +244,14 @@ const server = http.createServer((req, res) => {
                 
                 }
                 else{
-                ok200(res,data,contentType);
+                  if(req.url == '/halcon.html' ||  req.url == '/razor.html' || req.url == '/slave.html'){
+                    ok200(res,contentType,req);
+                  } else {
+                    res.writeHead(200, {'Content-Type': contentType});
+                    res.write(data);
+                    res.end();
+                  }
+                  
                 }
             } 
         });
