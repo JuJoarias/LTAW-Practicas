@@ -82,13 +82,16 @@ function ok200description(res,tipo,user){
 
 function ok200(res,tipo,req){
   if(req.url == '/halcon.html'){
-    const descripcion=halcon.replace('<!-- descripcion -->', productos[0].descripcion);
+    const nombre = halcon.replace('<!--nombre-->', productos[0].nombre);
+    const descripcion=nombre.replace('<!-- descripcion -->', productos[0].descripcion);
     content = descripcion.replace('<!-- precio -->', productos[0].precio + "$");
   } else if(req.url == '/razor.html'){
-    const descripcion=razor.replace('<!-- descripcion -->', productos[1].descripcion);
+    const nombre = razor.replace('<!--nombre-->', productos[1].nombre);
+    const descripcion=nombre.replace('<!-- descripcion -->', productos[1].descripcion);
     content = descripcion.replace('<!-- precio -->', productos[1].precio+ "$");
   } else if(req.url == '/slave.html'){
-    const descripcion=slave.replace('<!-- descripcion -->', productos[2].descripcion);
+    const nombre = slave.replace('<!--nombre-->', productos[2].nombre);
+    const descripcion=nombre.replace('<!-- descripcion -->', productos[2].descripcion);
     content = descripcion.replace('<!-- precio -->', productos[2].precio+ "$");
   }
     res.writeHead(200, {'Content-Type': tipo});
