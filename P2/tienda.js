@@ -135,7 +135,7 @@ const server = http.createServer((req, res) => {
             for (let prod of productos) {
                 
                 //prod = ShowDescription().split(",")[i]
-                console.log('Prod: '+prod.nombre)
+                //console.log('Prod: '+prod.nombre)
                 //-- Pasar a mayúsculas
                 prodU = prod.nombre.toUpperCase();
                 
@@ -147,8 +147,11 @@ const server = http.createServer((req, res) => {
                 
             }
             console.log(result);
-            content = JSON.stringify(result);
-            break;
+            Content = JSON.stringify(result);
+            res.setHeader('Content-Type', contentType);
+            res.write(Content);
+            res.end();
+            return;
 
         case 'cliente.js':
             //-- Leer fichero javascript

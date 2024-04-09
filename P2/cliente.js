@@ -1,3 +1,5 @@
+
+
 console.log("Ejecutando Javascript...");
 
 //-- Elementos HTML para mostrar informacion
@@ -9,6 +11,9 @@ const caja = document.getElementById("caja");
 //-- Retrollamda del boton de Ver productos
 caja.oninput = () => {
 
+    // if(caja.value<3){
+    //     alert('llego')
+    // }
     //-- Crear objeto para hacer peticiones AJAX
     const m = new XMLHttpRequest();
 
