@@ -5,6 +5,7 @@ const express = require('express');
 const colors = require('colors');
 
 const PUERTO = 9090;
+let n_clientes = 0;
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -31,20 +32,25 @@ app.use(express.static('public'));
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
-  
+    n_clientes += 1
   console.log('** NUEVA CONEXIÓN **'.yellow);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
+    n_clientes -=1
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
+    if (msg == `/list`){
+        console.log(n_clientes)
+    }
+
     //-- Reenviarlo a todos los clientes conectados
-    io.send(msg);
+    io.send(msg); // si quiero que sea solo al cliente que lo0 hace es con socket en vez de io
   });
 
 });
