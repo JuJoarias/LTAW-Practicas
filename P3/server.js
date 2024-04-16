@@ -17,12 +17,6 @@ const server = http.Server(app);
 //-- Crear el servidor de websockets, asociado al servidor http
 const io = socket(server);
 
-//-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
-//-- Definir el punto de entrada principal de mi aplicación web
-app.get('/', (req, res) => {
-  res.send('Bienvenido a mi aplicación Web!!!' + '<p><a href="/cliente.html">A chatear!</a></p>');
-});
-
 //-- Esto es necesario para que el servidor le envíe al cliente la
 //-- biblioteca socket.io para el cliente
 app.use('/', express.static(__dirname +'/'));
@@ -73,7 +67,7 @@ io.on('connect', (socket) => {
       socket.send(mensaje);
       return;
     }
-
+// para lo del user mirar con socket.emit
     //-- Reenviarlo a todos los clientes conectados si no es un comando
     io.send(msg); 
   });
