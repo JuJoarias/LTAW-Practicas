@@ -6,6 +6,7 @@ const colors = require('colors');
 
 const PUERTO = 9090;
 let n_clientes = 0;
+let comandos = ['/help', '/list', '/hello', '/date']
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -32,25 +33,49 @@ app.use(express.static('public'));
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
-    n_clientes += 1
+  n_clientes += 1
   console.log('** NUEVA CONEXIÓN **'.yellow);
-
+  io.send('Usuario nuevo conectado'); 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     n_clientes -=1
+    io.send('Usuario desconectado'); 
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
-    if (msg == `/list`){
-        console.log(n_clientes)
+    // compruebo si es un comando
+    if (comandos.includes(msg)){
+      console.log('Es un comando')
+
+      if (msg == `/list`){
+        mensaje = 'Numero de usuarios conectados es: ' + n_clientes
+        
+      } else if (msg == `/help`){
+        mensaje = 'Los comandos permitidos son: '+comandos
+
+      } else if(msg == `/hello`){
+        mensaje = 'Hola de parte del servidor'
+
+      } else {
+        let date = new Date()
+
+        let day = date.getDate()
+        let month = date.getMonth() + 1
+        let year = date.getFullYear()
+
+        mensaje = `Hoy es: ${day}-${month}-${year}`
+      }
+      // mando el resultado solo al cliente que lo mando 
+      socket.send(mensaje);
+      return;
     }
 
-    //-- Reenviarlo a todos los clientes conectados
-    io.send(msg); // si quiero que sea solo al cliente que lo0 hace es con socket en vez de io
+    //-- Reenviarlo a todos los clientes conectados si no es un comando
+    io.send(msg); 
   });
 
 });
