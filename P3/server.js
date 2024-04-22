@@ -54,9 +54,8 @@ io.on('connect', (socket) => {
   socket.on("chatMessage", (msg)=> {
     console.log("Mensaje Recibido: " + msg);
 
-    const username = socket.handshake.headers.cookie
-            ? socket.handshake.headers.cookie.split('=')[1]
-            : 'Anonymous';
+    const username = socket.handshake.headers.cookie.split('=')[1]
+            ? socket.handshake.headers.cookie.split('=')[1]  : 'Anonymous';
 
     console.log('El username es: ' + username)
     // compruebo si es un comando
