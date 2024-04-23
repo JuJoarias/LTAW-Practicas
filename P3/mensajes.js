@@ -6,7 +6,7 @@ const msg_entry = document.getElementById("msg_entry");
 const socket = io();
 
 
-socket.on("chatMessage", (msg)=>{
+socket.on("message", (msg)=>{
   display.innerHTML += '<p style="color:blue">' + msg + '</p>';
 });
 

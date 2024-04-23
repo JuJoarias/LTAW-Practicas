@@ -33,7 +33,7 @@ io.on('connect', (socket) => {
 
   n_clientes += 1
   console.log('** NUEVA CONEXIÓN **'.yellow);
-  io.emit('chatMessage', `Server: Usuario nuevo conectado`); 
+  io.emit('message', `Server: Usuario nuevo conectado`); 
   // Obtener la URL actual del socket
   const url = socket.handshake.headers.referer;
   console.log('URL actual:', url);
@@ -47,11 +47,11 @@ io.on('connect', (socket) => {
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     n_clientes -=1
-    io.emit('chatMessage', `Server: Usuario desconectado`); 
+    io.emit('message', `Server: Usuario desconectado`); 
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
-  socket.on("chatMessage", (msg)=> {
+  socket.on("message", (msg)=> {
     console.log("Mensaje Recibido: " + msg);
 
     //const username = 'anonimus'
@@ -80,12 +80,12 @@ io.on('connect', (socket) => {
         mensaje = `Hoy es: ${day}-${month}-${year}`
       }
       // mando el resultado solo al cliente que lo mando 
-      socket.emit('chatMessage', `Server: ${mensaje}`);
+      socket.emit('message', `Server: ${mensaje}`);
       return;
     }
 // para lo del user mirar con socket.emit
     //-- Reenviarlo a todos los clientes conectados si no es un comando
-    io.emit('chatMessage', `${username}: ${msg}`);
+    io.emit('message', `${username}: ${msg}`);
   });
 
 });
