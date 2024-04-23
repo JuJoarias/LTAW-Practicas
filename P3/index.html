@@ -9,18 +9,13 @@
 </head>
 <body>
     <h1>Bienvenido a mi aplicación Web!!!</h1>
-    <input type="text" id="usernameInput" placeholder="Username" autocomplete="off" >
-    <button id="submitButton">Submit</button>
-    <!-- <p><a href="/cliente.html">A chatear!</a></p> -->
+    <h2>Elige tu nick</h2>
+    <form id="loginForm" action="/cliente.html" method="get">
+        <h2>Iniciar sesión</h2>
+        <label for="username">Nick:</label>
+        <input type="text" id="username" name="username" value="" required>
+        <input type="submit" value="Iniciar sesión">
+    </form>
 
-    <script>
-        const socket = io();
-
-        document.getElementById('submitButton').addEventListener('click', () => {
-            const username = document.getElementById('usernameInput').value;
-            socket.emit('username', username);
-            window.location.href = '/cliente.html';
-        });
-    </script>
 </body>
 </html>

@@ -15,30 +15,9 @@
 
 <body>
   <h2>Chat</h2>
-  <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="messageInput">
-  <button id="submitButton">Send</button>
-
-  <div id="chatMessages"></div>
-  <!-- <h3>Mensajes recibidos</h3>
-  <p id="display"></p> -->
-
-  <script>
-    const socket = io();
-
-    document.getElementById('submitButton').addEventListener('click', () => {
-        const message = document.getElementById('messageInput').value;
-        socket.emit('chatMessage', message);
-        document.getElementById('messageInput').value = '';
-    });
-
-    // Manejar mensajes recibidos del servidor
-    socket.on('chatMessage', (message) => {
-        const chatMessages = document.getElementById('chatMessages');
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        chatMessages.appendChild(messageElement);
-    });
-</script>
+  <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
+  <h3>Mensajes recibidos</h3>
+  <p id="display"></p>
 
 </body>
 </html>

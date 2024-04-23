@@ -26,6 +26,7 @@ app.use('/', express.static(__dirname +'/'));
 //-- El directorio publico contiene ficheros estáticos
 app.use(express.static('public'));
 
+
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
@@ -33,15 +34,14 @@ io.on('connect', (socket) => {
   n_clientes += 1
   console.log('** NUEVA CONEXIÓN **'.yellow);
   io.emit('chatMessage', `Server: Usuario nuevo conectado`); 
+  // Obtener la URL actual del socket
+  const url = socket.handshake.headers.referer;
+  console.log('URL actual:', url);
 
-  // Tomamos la cookie del username
-  socket.on('username', (username) => {
-    // Establecer el nombre de usuario como cookie
-    socket.handshake.headers.cookie = `username=${username}`;
-    
-    // Emitir un evento para confirmar al cliente que se ha establecido el nombre de usuario
-    socket.emit('usernameSet', username);
-});
+  // Parsear la URL para obtener el valor del parámetro username
+  const urlParams = new URLSearchParams(new URL(url).search);
+  const username = urlParams.get('username');
+  console.log('Nombre de usuario:', username);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
@@ -54,8 +54,7 @@ io.on('connect', (socket) => {
   socket.on("chatMessage", (msg)=> {
     console.log("Mensaje Recibido: " + msg);
 
-    const username = socket.handshake.headers.cookie.split('=')[1]
-            ? socket.handshake.headers.cookie.split('=')[1]  : 'Anonymous';
+    //const username = 'anonimus'
 
     console.log('El username es: ' + username)
     // compruebo si es un comando
