@@ -30,18 +30,18 @@ app.use(express.static('public'));
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
-
-  n_clientes += 1
-  console.log('** NUEVA CONEXIÓN **'.yellow);
-  io.emit('message', `Server: Usuario nuevo conectado`); 
-  // Obtener la URL actual del socket
+  // Parsear la URL para obtener el valor del parámetro username
   const url = socket.handshake.headers.referer;
   console.log('URL actual:', url);
-
-  // Parsear la URL para obtener el valor del parámetro username
   const urlParams = new URLSearchParams(new URL(url).search);
   const username = urlParams.get('username');
   console.log('Nombre de usuario:', username);
+  
+  n_clientes += 1
+  console.log('** NUEVA CONEXIÓN **'.yellow);
+  io.emit('message', `Server: Usuario "${username}" conectado`); 
+  // Obtener la URL actual del socket
+
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
