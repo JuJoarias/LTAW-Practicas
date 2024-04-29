@@ -47,7 +47,7 @@ io.on('connect', (socket) => {
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     n_clientes -=1
-    io.emit('message', `Server: Usuario desconectado`); 
+    io.emit('message', `Server: Usuario "`+  username+  `" desconectado`); 
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
