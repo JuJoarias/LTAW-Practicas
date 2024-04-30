@@ -3,6 +3,7 @@
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
     "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
     "express": "^4.19.2",
     "socket.io": "^4.7.5",
     "websocket": "^1.0.34",
