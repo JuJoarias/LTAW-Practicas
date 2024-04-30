@@ -1,4 +1,5 @@
 const electron = require('electron');
+const ip = require('ip');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -9,13 +10,15 @@ const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const print = document.getElementById("print");
+const url = document.getElementById("urldir");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
 //-- el proceso princpal
 info1.textContent = process.version;
-info2.textContent = process.platform;
+info2.textContent = process.versions.chrome;
 info3.textContent = process.versions.electron;
+url.textContent = "http://" + ip.address() + ":" + 9090;
 
 
 btn_test.onclick = () => {

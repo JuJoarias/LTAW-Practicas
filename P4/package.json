@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "electron-builder": "^24.13.3",
+        "ip": "^2.0.1",
         "puppeteer": "^22.7.1"
     }
 }

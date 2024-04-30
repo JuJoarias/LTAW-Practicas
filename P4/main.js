@@ -45,7 +45,7 @@ electron.app.on('ready', () => {
 
   //-- Enviar un mensaje al proceso de renderizado para que lo saque
   //-- por la interfaz gráfica
-  win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+  win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO ");
 
 });
 
