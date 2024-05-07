@@ -22,11 +22,11 @@ url.textContent = "http://" + ip.address() + ":" + 9090;
 
 
 btn_test.onclick = () => {
-    display.innerHTML += "TEST! ";
+    display.innerHTML += "<p>Server: Mensaje de prueba! </p>";
     console.log("Botón apretado!");
 
     //-- Enviar mensaje al proceso principal
-    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
+    electron.ipcRenderer.invoke('test', "Mensaje de prueba!");
 }
 
 //-- Mensaje recibido del proceso MAIN
@@ -34,3 +34,8 @@ electron.ipcRenderer.on('print', (event, message) => {
     console.log("Recibido: " + message);
     print.textContent = message;
   });
+
+  electron.ipcRenderer.on('usersCon' , (event,message) => {
+    const userslist = document.getElementById("nUsers");
+    userslist.textContent = message.length;
+  })

@@ -9,6 +9,7 @@ const PUERTO = 9090;
 let n_clientes = 0;
 let comandos = ['/help', '/list', '/hello', '/date']
 let win = null;
+let clientes =  [];
 
 //-- Punto de entrada. En cuanto electron está listo,
 //-- ejecuta esta función
@@ -39,18 +40,21 @@ electron.app.on('ready', () => {
     const urlParams = new URLSearchParams(new URL(url).search);
     const username = urlParams.get('username');
     console.log('Nombre de usuario:', username);
+    clientes.push(username);
     
     n_clientes += 1
     console.log('** NUEVA CONEXIÓN **'.yellow);
     io.emit('message', `Server: Usuario "${username}" conectado`); 
-    // Obtener la URL actual del socket
+    win.webContents.send('usersCon' , clientes)
 
 
     //-- Evento de desconexión
     socket.on('disconnect', function(){
       console.log('** CONEXIÓN TERMINADA **'.yellow);
+      clientes = clientes.filter(item => item != username);
       n_clientes -=1
       io.emit('message', `Server: Usuario "`+  username+  `" desconectado`); 
+      win.webContents.send('usersCon' , clientes)
     });  
 
     //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -119,18 +123,20 @@ electron.app.on('ready', () => {
 
   //-- Cargar interfaz gráfica en HTML
   win.loadFile("main.html");
+  win.setIcon("public/jawa_icon-icons.com_76960.png")
 
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
   win.on('ready-to-show', () => {
-    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+    win.webContents.send('usersCon' , clientes)
   });
 
   //-- Esperar a recibir los mensajes de botón apretado (Test) del proceso de 
   //-- renderizado. Al recibirlos se escribe una cadena en la consola
   electron.ipcMain.handle('test', (event, msg) => {
     console.log("-> Mensaje: " + msg);
+    io.emit('message', `Server: ${msg}`); 
   });
 
 });
