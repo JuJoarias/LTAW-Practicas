@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="server.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="login.css">
+    <link rel="icon" type="image/x-icon" href="/jawa_icon-icons.com_76960.png">
+
+</head>
+<body>
+    <div id="titulos">
+        <h1>Bienvenido a mi aplicación Web!!!</h1>
+        <h2>Elige tu nick</h2>
+    </div>
+    <div id="login">
+        <form id="loginForm" action="/cliente.html" method="get">
+            <label for="username">Nick:</label>
+            <input type="text" id="username" name="username" value="" required>
+            <input type="submit" value="Iniciar sesión">
+        </form>
+    </div>
+
+</body>
+</html>

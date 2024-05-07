@@ -1,0 +1,67 @@
+@font-face{
+    font-family: "jabba";
+    src: url("jabba.ttf");
+}
+
+body {
+    background-image: url('Jaawa.webp'); /* Cambia 'tu-imagen-de-fondo.jpg' por la ruta de tu imagen */
+    background-size: cover; /* La imagen de fondo se ajusta para cubrir todo el área */
+    background-position: center; /* La imagen de fondo se centra */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+}
+
+
+#titulo {
+    font-family: "jabba";
+    text-align: center;
+    margin-top: 20px;
+    position: -webkit-sticky; /* Para navegadores basados en WebKit */
+    position: sticky;
+    top: 0;
+    background-image: url(/chapa1.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Asegura que el título esté encima del resto del contenido */
+}
+
+#recibidos {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-image: url(/chapa1.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Hace que ocupe todo el espacio disponible */
+    overflow-y: auto; /* Agrega desplazamiento vertical cuando sea necesario */
+}
+
+#recibidos h3 {
+    font-family: "jabba";
+    margin-top: 0;
+}
+
+#display {
+    overflow-wrap: break-word; /* Divide las palabras largas */
+}
+
+#msg_entry {
+    width: calc(100% - 40px);
+    /* Teniendo en cuenta el padding */
+    padding: 10px 20px;
+    margin: 20px auto 0 auto;
+    margin-bottom: 30px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
