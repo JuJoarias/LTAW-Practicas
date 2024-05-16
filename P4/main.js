@@ -46,6 +46,7 @@ electron.app.on('ready', () => {
     console.log('** NUEVA CONEXIÓN **'.yellow);
     io.emit('message', `Server: Usuario "${username}" conectado`); 
     win.webContents.send('usersCon' , clientes)
+    win.webContents.send('message' , `Server: Usuario "${username}" conectado`)
 
 
     //-- Evento de desconexión
@@ -55,6 +56,8 @@ electron.app.on('ready', () => {
       n_clientes -=1
       io.emit('message', `Server: Usuario "`+  username+  `" desconectado`); 
       win.webContents.send('usersCon' , clientes)
+      win.webContents.send('message' , `Server: Usuario "${username}" desconectado`)
+
     });  
 
     //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -88,11 +91,13 @@ electron.app.on('ready', () => {
         }
         // mando el resultado solo al cliente que lo mando 
         socket.emit('message', `Server: ${mensaje}`);
+        win.webContents.send('message' , `Server: ${mensaje}`)
         return;
       }
   // para lo del user mirar con socket.emit
       //-- Reenviarlo a todos los clientes conectados si no es un comando
       io.emit('message', `${username}: ${msg}`);
+      win.webContents.send('message' , `${username}: ${msg}`)
     });
 
   });

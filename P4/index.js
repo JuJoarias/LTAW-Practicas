@@ -33,9 +33,13 @@ btn_test.onclick = () => {
 electron.ipcRenderer.on('print', (event, message) => {
     console.log("Recibido: " + message);
     print.textContent = message;
-  });
+});
 
-  electron.ipcRenderer.on('usersCon' , (event,message) => {
+electron.ipcRenderer.on('usersCon' , (event,message) => {
     const userslist = document.getElementById("nUsers");
     userslist.textContent = message.length;
-  })
+})
+
+electron.ipcRenderer.on('message' , (event,message) => {
+  display.innerHTML += `<p>${message}</p>`;
+})
