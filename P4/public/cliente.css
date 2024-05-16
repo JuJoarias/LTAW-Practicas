@@ -52,6 +52,7 @@ body {
 
 #display {
     overflow-wrap: break-word; /* Divide las palabras largas */
+    overflow-y: auto; /* Agrega desplazamiento vertical cuando sea necesario */
 }
 
 #msg_entry {

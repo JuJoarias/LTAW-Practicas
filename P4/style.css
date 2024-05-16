@@ -1,20 +1,99 @@
+@font-face{
+  font-family: "jabba";
+  src: url("public/jabba.ttf");
+}
+
+/* Estilos para el cuerpo */
+body {
+  background-image: url('public/Jaawa.webp'); /* Cambia 'tu-imagen-de-fondo.jpg' por la ruta de tu imagen */
+  background-size: cover; /* La imagen de fondo se ajusta para cubrir todo el área */
+  background-position: center; /* La imagen de fondo se centra */
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el encabezado */
 h1 {
-    width: 93%;
-    padding: 20px;
-    background-color: lightgreen;
-    border-radius: 10px;
-    text-align: center;
-  }
-
-.blue {
-    color: blue;
+  font-family: "jabba";
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
 }
 
-.red {
-  color: red;
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px auto;
+  
 }
 
-  #display {
-      border: 2px solid lightblue;
-      padding: 10px;
-  }
+/* Estilos para la información */
+#informacion {
+  background-image: url('public/chapa1.jpg');
+  background-size: cover; /* La imagen de fondo se ajusta para cubrir todo el área */
+  background-position: center; /* La imagen de fondo se centra */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 48%;
+  height: 80vh; /* El 80% de la altura de la ventana */
+  overflow-y: auto; /* Agregar barras de desplazamiento si es necesario */
+}
+
+#informacion h2 {
+  font-family: "jabba";
+  color: #333;
+}
+
+#informacion ul {
+  font-family: "jabba";
+  list-style-type: none;
+  padding: 0;
+}
+
+#informacion li {
+  margin-bottom: 10px;
+}
+
+#informacion .blue {
+  color: blue;
+}
+
+/* Estilos para el texto */
+#texto {
+  background-image: url('public/chapa1.jpg');
+  background-size: cover; /* La imagen de fondo se ajusta para cubrir todo el área */
+  background-position: center; /* La imagen de fondo se centra */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 48%;
+  height: 80vh; /* El 80% de la altura de la ventana */
+}
+
+#texto p {
+  margin-bottom: 10px;
+}
+
+#texto input[type="button"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#texto input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+#display {
+  border: 1px solid #000000;
+  padding: 10px;
+  min-height: 100px;
+  max-height: calc(80vh - 150px); /* El 80% de la altura de la ventana menos un poco para los otros elementos */
+  overflow-y: auto;
+  overflow-wrap: break-word; /* Divide las palabras largas */
+}

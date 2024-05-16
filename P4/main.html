@@ -15,28 +15,29 @@
     <!-- Cargar el proceso asociado a esta página -->
     <script src="index.js" defer></script>
 
-    <title>Mi APP (version 10)</title>
+    <title>Server</title>
 </head>
 <body>
-    <div id="titulo">
-        <h1>HOME CHAT (SERVER)</h1>
+    <h1>HOME CHAT (SERVER)</h1>
+    <div class="container">
+        <div id="informacion">
+            <h2>Información:</h2>
+            <ul>
+                <li>Version Node: <span id="info1" class="blue"></span> </li>
+                <li>Version Chrome: <span id="info2" class="blue"></span></li>
+                <li>Version electron: <span id="info3" class="blue"></span></li>
+            </ul>
+            <h2>Usuarios Conectados</h2>
+            <p id="nUsers"></p>
+            <h2>Direccion IP</h2>
+            <p id="urldir"></p>
+        </div>
+        <div id="texto">
+            <p> <input type="button" value="Enviar mensaje de prueba" id="btn_test"> </p>
+            <p>Mensajes:</p>
+            <p id="display"></p>
+        </div>
     </div>
-    <div id="informacion">
-        <hr>
-        <h2>Información:</h2>
-        <ul>
-            <li>Version Node: <span id="info1" class="blue"></span> </li>
-            <li>Version Chrome: <span id="info2" class="blue"></span></li>
-            <li>Version electron: <span id="info3" class="blue"></span></li>
-        </ul>
-        <h2>Usuarios Conectados</h2>
-        <p id="nUsers"></p>
-        <h2>Direccion IP</h2>
-        <p id="urldir"></p>
-        <hr>
-    </div>
-    <p>   <input type="button" value="Enviar mensaje de prueba" id="btn_test"> </p>
-   <p>Mensajes:</p>
-    <p id="display"></p>
 </body>
+
 </html>
