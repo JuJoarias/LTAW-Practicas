@@ -33,6 +33,8 @@
         "express": "^4.19.2",
         "ip": "^2.0.1",
         "puppeteer": "^22.7.1",
-        "socket.io": "^4.7.5"
+        "socket.io": "^4.7.5",
+        "websocket": "^1.0.35",
+        "wscat": "^5.2.0"
     }
 }
