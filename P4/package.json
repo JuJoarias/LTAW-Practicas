@@ -1,14 +1,15 @@
 {
-    "name": "mi-electron-app",
-    "description": "Estas es mi primera aplicación de escritorio en Electron",
+    "name": "p4",
+    "description": "Server p4",
     "version": "0.1.0",
     "main": "main.js",
     "author": {
-        "name": "Obijuan"
+        "name": "Juan Jose"
     },
     "homepage": "",
     "license": "LGPL",
     "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
         "start": "electron .",
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
@@ -24,11 +25,14 @@
         }
     },
     "devDependencies": {
-        "electron-builder": "^24.13.3",
-        "electron": "^18.3.15"
+        "electron": "^18.3.15",
+        "electron-builder": "^24.13.3"
     },
     "dependencies": {
+        "colors": "^1.4.0",
+        "express": "^4.19.2",
         "ip": "^2.0.1",
-        "puppeteer": "^22.7.1"
+        "puppeteer": "^22.7.1",
+        "socket.io": "^4.7.5"
     }
 }
